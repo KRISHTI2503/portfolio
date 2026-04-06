@@ -132,7 +132,7 @@ export default function Projects() {
 
       <div className="max-w-7xl mx-auto">
         <SectionTitle
-          label="// my work"
+          label="My Work"
           title={<>Featured <span className="gradient-text">Projects</span></>}
         />
 

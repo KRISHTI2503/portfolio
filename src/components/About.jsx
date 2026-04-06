@@ -48,7 +48,7 @@ export default function About() {
         {/* Content */}
         <div>
           <div className="reveal">
-            <span className="section-label">// about me</span>
+            <span className="section-label">About Me</span>
           </div>
           <h2 className="reveal reveal-delay-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-5 leading-tight">
             Passionate about<br />

@@ -37,7 +37,7 @@ export default function Contact() {
 
       <div className="max-w-xl mx-auto text-center">
         <SectionTitle
-          label="// contact"
+          label="Contact"
           title={<>Let's <span className="gradient-text">Connect</span></>}
           subtitle="Open to collaborations, internships, or just a friendly chat."
         />

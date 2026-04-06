@@ -53,7 +53,7 @@ export default function Education() {
 
       <div className="max-w-4xl mx-auto">
         <SectionTitle
-          label="// background"
+          label="Background"
           title={<span className="gradient-text">Education</span>}
         />
 

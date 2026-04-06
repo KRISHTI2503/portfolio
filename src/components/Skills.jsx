@@ -43,7 +43,7 @@ export default function Skills() {
 
       <div className="max-w-7xl mx-auto">
         <SectionTitle
-          label="// tech stack"
+          label="Tech Stack"
           title={<>Skills & <span className="gradient-text">Technologies</span></>}
         />
 

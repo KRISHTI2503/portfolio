@@ -116,7 +116,7 @@ function SubHeading({ label, children }) {
   return (
     <div className="mb-8 sm:mb-10">
       <div className="flex items-center gap-3 mb-6 sm:mb-8">
-        <span className="text-teal-400 font-mono text-sm">{label}</span>
+        <span className="text-teal-400 font-mono text-sm font-semibold tracking-wide">{label}</span>
         <div className="flex-1 h-px bg-gradient-to-r from-teal-500/30 to-transparent" />
       </div>
       {children}
@@ -133,12 +133,12 @@ export default function Achievements() {
 
       <div className="max-w-7xl mx-auto">
         <SectionTitle
-          label="// recognition"
+          label="Recognition"
           title={<>Achievements & <span className="gradient-text">More</span></>}
         />
 
         {/* ── Hackathons & Awards ── */}
-        <SubHeading label="// hackathons & awards">
+        <SubHeading label="Hackathons & Awards">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {hackathons.map((item, i) => (
               <div
@@ -174,7 +174,7 @@ export default function Achievements() {
         </SubHeading>
 
         {/* ── Certificates ── */}
-        <SubHeading label="// certificates">
+        <SubHeading label="Certificates">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {certificates.map((cert, i) => (
               <a
@@ -211,7 +211,7 @@ export default function Achievements() {
         </SubHeading>
 
         {/* ── Coding Profiles ── */}
-        <SubHeading label="// coding profiles">
+        <SubHeading label="Coding Profiles">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {codingProfiles.map((profile, i) => (
               <a

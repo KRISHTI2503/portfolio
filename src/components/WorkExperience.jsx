@@ -10,7 +10,7 @@ export default function WorkExperience() {
 
       <div className="max-w-4xl mx-auto">
         <SectionTitle
-          label="// career"
+          label="Career"
           title={<>Work <span className="gradient-text">Experience</span></>}
         />
 
