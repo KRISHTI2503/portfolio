@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset anchor targets so fixed navbar doesn't cover headings */
+section[id], footer[id] {
+  scroll-margin-top: 72px;
+}
+
+/* Smooth theme transitions — color properties only, not transform/opacity */
+*:not(.reveal):not(.reveal-slide-up):not(.reveal-scale),
+*:not(.reveal):not(.reveal-slide-up):not(.reveal-scale)::before,
+*:not(.reveal):not(.reveal-slide-up):not(.reveal-scale)::after {
+  transition: background-color 300ms ease, color 300ms ease,
+              border-color 300ms ease, box-shadow 300ms ease;
+}
+/* Restore transform transitions for interactive elements */
+a, button {
+  transition: background-color 250ms ease, color 250ms ease,
+              border-color 250ms ease, box-shadow 250ms ease,
+              transform 250ms ease, opacity 250ms ease;
+}
+
+body {
+  background-color: #030712;
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Light mode overrides */
+html:not(.dark) body {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  /* Subtle light grid pattern */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(148,163,184,0.15)' stroke-width='1'/%3E%3C/svg%3E");
+}
+html:not(.dark) body::before {
+  opacity: 0.15;
+}
+
+/* Text color hierarchy in light mode */
+html:not(.dark) .text-white          { color: #0f172a !important; }
+html:not(.dark) .text-slate-100      { color: #1e293b !important; }
+html:not(.dark) .text-slate-200      { color: #1e293b !important; }
+html:not(.dark) .text-slate-300      { color: #334155 !important; }
+html:not(.dark) .text-slate-400      { color: #475569 !important; }
+html:not(.dark) .text-slate-500      { color: #64748b !important; }
+html:not(.dark) .text-slate-600      { color: #64748b !important; }
+html:not(.dark) .text-slate-700      { color: #94a3b8 !important; }
+
+/* Card surfaces */
+html:not(.dark) .glass-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+html:not(.dark) .glass-card:hover {
+  background: #ffffff;
+  border-color: rgba(13, 148, 136, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Navbar ── */
+html:not(.dark) nav {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+}
+/* Inactive nav links */
+html:not(.dark) nav a.text-slate-400 { color: #334155 !important; }
+html:not(.dark) nav a.text-slate-400:hover { color: #0f172a !important; }
+/* Nav link hover bg */
+html:not(.dark) nav a:hover { background-color: rgba(0, 0, 0, 0.04) !important; }
+/* Mobile menu panel — target by inline style instead of escaped class */
+html:not(.dark) nav [style*="background"] {
+  border-top-color: rgba(0, 0, 0, 0.06) !important;
+}
+/* Target the actual div with the dark bg class */
+html:not(.dark) nav > div + div > div {
+  background-color: rgba(255, 255, 255, 0.97) !important;
+  border-top-color: rgba(0, 0, 0, 0.06) !important;
+}
+/* Mobile menu links */
+html:not(.dark) nav .text-slate-300 { color: #334155 !important; }
+/* Hamburger bars */
+html:not(.dark) nav .bg-slate-300 { background-color: #475569 !important; }
+/* Theme toggle button */
+html:not(.dark) nav button.border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #475569 !important;
+}
+html:not(.dark) nav button.border-white\/10:hover {
+  border-color: #0d9488 !important;
+  color: #0d9488 !important;
+}
+
+/* Orbs — tone down in light mode */
+html:not(.dark) .orb { opacity: 0.3; }
+
+/* ── Section separation ── */
+html:not(.dark) section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+/* Alternate section backgrounds */
+html:not(.dark) #hero,
+html:not(.dark) #skills,
+html:not(.dark) #achievements,
+html:not(.dark) #experience,
+html:not(.dark) #contact     { background-color: #f8fafc; }
+
+html:not(.dark) #about,
+html:not(.dark) #projects,
+html:not(.dark) #education,
+html:not(.dark) footer        { background-color: #ffffff; }
+
+/* ── Button & link micro-animations ── */
+/* Contact social icon buttons */
+html .group.flex.flex-col.items-center > span {
+  transition: transform 250ms ease-out, box-shadow 250ms ease-out,
+              background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+}
+html .group.flex.flex-col.items-center:hover > span {
+  transform: scale(1.08) translateY(-2px);
+}
+html .group.flex.flex-col.items-center:active > span {
+  transform: scale(0.96);
+}
+
+/* Project Source / Live Demo links */
+html .group\/link {
+  transition: color 250ms ease, transform 250ms ease;
+  display: inline-flex;
+  align-items: center;
+}
+html .group\/link:hover  { transform: translateY(-1px); }
+html .group\/link:active { transform: scale(0.95); }
+
+/* Coding profile cards & certificate cards — already have hover:scale via Tailwind,
+   add active press */
+html .glass-card:active { transform: scale(0.98) !important; }
+
+/* section-label pill — stronger border on white */
+html:not(.dark) .section-label {
+  border-color: rgba(13, 148, 136, 0.35);
+  background: rgba(13, 148, 136, 0.08);
+}
+
+/* neon-border — visible on white */
+html:not(.dark) .neon-border {
+  border-color: rgba(13, 148, 136, 0.3);
+  box-shadow: 0 0 12px rgba(13, 148, 136, 0.12);
+}
+
+/* Icon containers (bg-white/5, border-white/10) — invisible on white cards */
+html:not(.dark) .bg-white\/5       { background-color: rgba(13, 148, 136, 0.06) !important; }
+html:not(.dark) .border-white\/10  { border-color: rgba(13, 148, 136, 0.2) !important; }
+html:not(.dark) .border-white\/\[0\.08\] { border-color: rgba(0, 0, 0, 0.08) !important; }
+html:not(.dark) .border-white\/5   { border-color: rgba(0, 0, 0, 0.06) !important; }
+
+/* Coding profile & badge text — too light on white */
+html:not(.dark) .text-yellow-300  { color: #b45309 !important; }
+html:not(.dark) .text-blue-300    { color: #1d4ed8 !important; }
+html:not(.dark) .text-amber-300   { color: #92400e !important; }
+html:not(.dark) .text-green-300   { color: #15803d !important; }
+html:not(.dark) .text-purple-300  { color: #7e22ce !important; }
+html:not(.dark) .text-pink-300    { color: #be185d !important; }
+html:not(.dark) .text-teal-300    { color: #0f766e !important; }
+html:not(.dark) .text-teal-400    { color: #0d9488 !important; }
+html:not(.dark) .text-teal-500    { color: #0d9488 !important; }
+html:not(.dark) .text-cyan-400    { color: #0e7490 !important; }
+html:not(.dark) .text-emerald-300 { color: #065f46 !important; }
+
+/* Footer border */
+html:not(.dark) footer { border-top-color: rgba(0, 0, 0, 0.08) !important; }
+
+/* btn-outline — stronger in light mode */
+html:not(.dark) .btn-outline {
+  border-color: #0d9488 !important;
+  color: #0d9488 !important;
+}
+
+/* Dashed / subtle borders */
+html:not(.dark) .border-teal-500\/25 { border-color: rgba(13,148,136,0.25) !important; }
+html:not(.dark) .border-teal-500\/30 { border-color: rgba(13,148,136,0.25) !important; }
+html:not(.dark) .border-teal-500\/40 { border-color: rgba(13,148,136,0.35) !important; }
+html:not(.dark) .border-yellow-500\/25 { border-color: rgba(234,179,8,0.3) !important; }
+html:not(.dark) .border-blue-500\/25   { border-color: rgba(59,130,246,0.3) !important; }
+html:not(.dark) .border-purple-500\/25 { border-color: rgba(168,85,247,0.3) !important; }
+html:not(.dark) .border-green-500\/25  { border-color: rgba(34,197,94,0.3) !important; }
+html:not(.dark) .border-amber-500\/25  { border-color: rgba(245,158,11,0.3) !important; }
+
+/* ── Hero section ── */
+html:not(.dark) #hero h1 { color: #0f172a; }
+/* Typewriter prompt character */
+html:not(.dark) #hero .text-slate-500 { color: #94a3b8 !important; }
+/* Typewriter text */
+html:not(.dark) #hero .text-cyan-300 { color: #0284c7 !important; }
+/* Cursor bar */
+html:not(.dark) #hero .bg-teal-400 { background-color: #0284c7 !important; }
+/* Description paragraph */
+html:not(.dark) #hero .text-slate-400 { color: #475569 !important; }
+/* Scroll label */
+html:not(.dark) #hero .text-slate-600 { color: #94a3b8 !important; }
+/* Scroll line */
+html:not(.dark) #hero .bg-gradient-to-b { opacity: 0.4; }
+/* Secondary (outline) button */
+html:not(.dark) #hero .btn-outline {
+  border-color: #0d9488;
+  color: #0d9488;
+}
+html:not(.dark) #hero .btn-outline:hover {
+  background-color: rgba(13, 148, 136, 0.08);
+  border-color: #0d9488;
+}
+
+/* Tags */
+html:not(.dark) .tag {
+  background: rgba(14, 165, 233, 0.1);
+  color: #0284c7;
+  border-color: rgba(14, 165, 233, 0.25);
+}
+html:not(.dark) .tag:hover {
+  background: rgba(14, 165, 233, 0.18);
+  border-color: rgba(14, 165, 233, 0.45);
+  color: #0369a1;
+}
+
+/* Project card links — Source and Live Demo */
+html:not(.dark) .text-slate-500 a,
+html:not(.dark) a.text-slate-500 {
+  color: #0284c7 !important;
+}
+html:not(.dark) a.text-slate-500:hover {
+  color: #0369a1 !important;
+  text-decoration: underline;
+}
+/* Target the group/link anchor elements inside project cards */
+html:not(.dark) .group\/link {
+  color: #0284c7 !important;
+}
+html:not(.dark) .group\/link:hover {
+  color: #0369a1 !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #030712; }
+::-webkit-scrollbar-thumb { background: #0d9488; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+
+/* Light mode scrollbar */
+html:not(.dark) ::-webkit-scrollbar-track { background: #e2e8f0; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #0d9488; }
+html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #0891b2; }
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent;
+  }
+  .gradient-text-alt {
+    @apply bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent;
+  }
+  .section-padding {
+    @apply py-16 px-6 sm:px-6 md:px-12 md:py-20 lg:px-24 lg:py-20;
+  }
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-2xl
+           hover:border-teal-500/40 hover:bg-white/[0.06] transition-all duration-500;
+  }
+  .neon-border {
+    @apply border border-teal-500/30 shadow-[0_0_15px_rgba(13,148,136,0.15)];
+  }
+  .section-label {
+    @apply inline-flex items-center gap-2 text-teal-400 font-mono text-xs tracking-[0.2em] uppercase
+           bg-teal-400/10 border border-teal-400/20 px-4 py-1.5 rounded-full mb-4;
+  }
+  .btn-primary {
+    @apply relative px-8 py-3.5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold
+           rounded-xl overflow-hidden transition-all duration-[250ms] ease-out
+           hover:scale-105 hover:shadow-[0_8px_24px_rgba(13,148,136,0.4)]
+           active:scale-[0.96] active:shadow-none;
+  }
+  .btn-outline {
+    @apply px-8 py-3.5 border border-teal-500/50 text-teal-400 font-semibold rounded-xl
+           transition-all duration-[250ms] ease-out
+           hover:bg-teal-500/10 hover:border-teal-400 hover:scale-105
+           hover:shadow-[0_6px_20px_rgba(13,148,136,0.2)]
+           active:scale-[0.96] active:shadow-none;
+  }
+  .tag {
+    @apply px-3 py-1 bg-teal-500/10 text-teal-300 rounded-lg text-xs font-mono
+           border border-teal-500/20 hover:border-teal-400/50 transition-colors;
+  }
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Radial glow anchored to top-center — adds depth behind hero */
+body::after {
+  content: '';
+  position: fixed;
+  top: -20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  max-width: 900px;
+  height: 60vh;
+  background: radial-gradient(ellipse at center,
+    rgba(13, 148, 136, 0.07) 0%,
+    rgba(6, 182, 212, 0.04) 40%,
+    transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Animated gradient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Extra ambient orbs injected via CSS on key sections */
+#hero::after,
+#projects::after,
+#achievements::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+  z-index: 0;
+}
+#hero::after {
+  width: 500px;
+  height: 500px;
+  bottom: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.06), transparent 70%);
+  animation: float 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+#projects::after {
+  width: 400px;
+  height: 400px;
+  top: 0;
+  left: -80px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.05), transparent 70%);
+  animation: float 12s ease-in-out infinite;
+  animation-delay: 1s;
+}
+#achievements::after {
+  width: 350px;
+  height: 350px;
+  bottom: 0;
+  right: -60px;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.05), transparent 70%);
+  animation: float 9s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* Hide extra CSS orbs in light mode */
+html:not(.dark) body::after,
+html:not(.dark) #hero::after,
+html:not(.dark) #projects::after,
+html:not(.dark) #achievements::after { display: none; }
+
+/* Intersection observer scroll animations */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.75s ease-out, transform 0.75s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none !important;
+}
+
+/* fade-up (default) */
+.reveal                { transform: translateY(36px); }
+
+/* slide-up — slightly more travel */
+.reveal-slide-up       { transform: translateY(52px); }
+
+/* fade-left / fade-right */
+.reveal-fade-left      { transform: translateX(-36px); }
+.reveal-fade-right     { transform: translateX(36px); }
+
+/* scale-in */
+.reveal-scale          { transform: scale(0.92); }
+
+/* Stagger delays */
+.reveal-delay-1  { transition-delay: 0.08s; }
+.reveal-delay-2  { transition-delay: 0.16s; }
+.reveal-delay-3  { transition-delay: 0.24s; }
+.reveal-delay-4  { transition-delay: 0.32s; }
+.reveal-delay-5  { transition-delay: 0.40s; }
+.reveal-delay-6  { transition-delay: 0.48s; }
