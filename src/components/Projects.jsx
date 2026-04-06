@@ -4,7 +4,7 @@ import SectionTitle from './SectionTitle'
 const projects = [
   {
     title: 'FundLedger',
-    description: 'Community funding platform enabling transparent proposal submission, verification, and democratic voting across funding rounds to support fair, community-driven funding decisions.',
+    description: 'Community funding platform enabling transparent proposal submission, verification, and democratic voting across funding rounds to support fair, community-driven funding decisions. Built during the DU Hacks 5.0 hackathon.',
     tags: ['Django', 'HTML', 'Tailwind CSS', 'JavaScript'],
     // Wallet icon
     icon: 'M21 12V7H5a2 2 0 010-4h14v4M21 12a2 2 0 010 4H5a2 2 0 010-4m0 0h16',
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     title: 'Stream Selection Platform',
-    description: 'Responsive platform to help students explore academic streams and career options. Displays colleges, career paths, and placement opportunities. Built during DU Hacks hackathon.',
+    description: 'Responsive platform to help students explore academic streams and career options. Displays colleges, career paths, and placement opportunities. Built during the DU Hacks 4.0 hackathon.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     // Academic cap icon
     icon: 'M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222',
