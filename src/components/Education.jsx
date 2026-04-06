@@ -34,7 +34,7 @@ const education = [
   {
     degree: 'SSC — 10th Grade',
     institution: 'DGES, Idar',
-    period: '2019 – 2020',
+    period: '2021 – 2022',
     status: 'Completed',
     highlights: ['Percentage: 92.16%'],
     icon: icons.ssc,
