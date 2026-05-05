@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const RESUME_VERSION = 'v2'
+const RESUME_VERSION = 'v3'
 const RESUME_URL = `/assets/resume.pdf?${RESUME_VERSION}`
 
 export default function ResumeModal({ onClose }) {
