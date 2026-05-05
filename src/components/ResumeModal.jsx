@@ -43,7 +43,7 @@ export default function ResumeModal({ onClose }) {
     >
       {/* Modal panel */}
       <div
-        className="relative w-full sm:max-w-[900px] h-[95vh] sm:h-[85vh] flex flex-col rounded-t-2xl sm:rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0a1628]"
+        className="relative w-full sm:max-w-[900px] h-[95vh] sm:h-[85vh] flex flex-col rounded-t-2xl sm:rounded-2xl overflow-hidden border border-white/[0.1] bg-[#0a1628] resume-modal-panel"
         style={{
           boxShadow: '0 24px 64px rgba(0,0,0,0.7), 0 0 0 1px rgba(13,148,136,0.25)',
           transform: visible ? 'scale(1) translateY(0)' : 'scale(0.95) translateY(16px)',
@@ -53,7 +53,7 @@ export default function ResumeModal({ onClose }) {
         onClick={e => e.stopPropagation()}
       >
         {/* ── Top bar ── */}
-        <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-white/[0.08] bg-[#0a1628]/95 backdrop-blur-sm flex-shrink-0">
+        <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-white/[0.08] bg-[#0a1628]/95 backdrop-blur-sm flex-shrink-0 resume-modal-bar">
           {/* Left: label */}
           <div className="flex items-center gap-2 text-slate-300 text-sm font-mono">
             <svg className="w-4 h-4 text-teal-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
@@ -95,7 +95,7 @@ export default function ResumeModal({ onClose }) {
             <button
               onClick={handleClose}
               aria-label="Close modal"
-              className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200"
+              className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200 resume-modal-close"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -105,7 +105,7 @@ export default function ResumeModal({ onClose }) {
         </div>
 
         {/* ── Hint text ── */}
-        <p className="px-4 sm:px-5 py-2 text-xs text-slate-500 font-mono border-b border-white/[0.05] flex-shrink-0">
+        <p className="px-4 sm:px-5 py-2 text-xs text-slate-500 font-mono border-b border-white/[0.05] flex-shrink-0 resume-modal-hint">
           Preview of my resume — feel free to download or open full screen.
         </p>
 
