@@ -20,11 +20,11 @@ export default function ResumeModal({ onClose }) {
       onClick={onClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-backdrop" />
 
       {/* Modal container */}
       <div
-        className="relative z-10 w-full max-w-[900px] h-[85vh] flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_24px_64px_rgba(0,0,0,0.6),0_0_0_1px_rgba(13,148,136,0.2)] bg-[#0a1628]"
+        className="relative z-10 w-full max-w-[900px] h-[85vh] flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_24px_64px_rgba(0,0,0,0.6),0_0_0_1px_rgba(13,148,136,0.2)] bg-[#0a1628] animate-modal"
         onClick={e => e.stopPropagation()}
       >
         {/* Top bar */}
