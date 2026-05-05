@@ -34,30 +34,6 @@ const hackathons = [
   },
 ]
 
-const certificates = [
-  {
-    title: 'DU Hacks 4.0',
-    issuer: 'GDSC DDU',
-    date: '2025',
-    emoji: '🏆',
-    href: '/certificates/du-hacks-4.0.jpeg',
-  },
-  {
-    title: 'DU Hacks 5.0',
-    issuer: 'GDSC DDU',
-    date: '2026',
-    emoji: '🚀',
-    href: '/certificates/du-hacks-5.0.jpeg',
-  },
-  {
-    title: 'TIC-TECH-TOE 4.0',
-    issuer: 'DA-IICT',
-    date: '2025',
-    emoji: '🌟',
-    href: '/certificates/tic-tech-toe-4.0.jpeg',
-  },
-]
-
 const codingProfiles = [
   {
     label: 'Codolio',
@@ -184,43 +160,6 @@ export default function Achievements() {
                   )}
                 </div>
               </div>
-            ))}
-          </div>
-        </SubHeading>
-
-        {/* ── Certificates ── */}
-        <SubHeading label="Certificates">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {certificates.map((cert, i) => (
-              <a
-                key={cert.title}
-                href={cert.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`reveal reveal-delay-${(i % 3) + 1} group glass-card p-5 flex flex-col gap-3 hover:scale-[1.03] hover:border-teal-500/40 hover:shadow-[0_0_20px_rgba(13,148,136,0.1)] transition-all duration-300 cursor-pointer`}
-              >
-                <div className="flex items-start justify-between">
-                  {/* Award icon — outline style */}
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-teal-400/30 transition-all duration-300">
-                    <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
-                    </svg>
-                  </div>
-                  {/* External link icon */}
-                  <svg className="w-4 h-4 text-slate-600 group-hover:text-teal-400 transition-colors flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold text-sm leading-snug group-hover:text-teal-300 transition-colors">
-                    {cert.title}
-                  </h3>
-                  <p className="text-slate-500 text-xs font-mono mt-1">{cert.issuer} · {cert.date}</p>
-                </div>
-                <span className="mt-auto text-xs text-teal-500 font-mono group-hover:text-teal-300 transition-colors">
-                  View Certificate →
-                </span>
-              </a>
             ))}
           </div>
         </SubHeading>
