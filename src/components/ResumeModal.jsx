@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 
+const RESUME_VERSION = 'v2'
+const RESUME_URL = `/assets/resume.pdf?${RESUME_VERSION}`
+
 export default function ResumeModal({ onClose }) {
   const [visible, setVisible] = useState(false)
   const [iframeError, setIframeError] = useState(false)
@@ -66,7 +69,7 @@ export default function ResumeModal({ onClose }) {
           <div className="flex flex-wrap items-center gap-1.5 justify-end">
             {/* Download Resume */}
             <a
-              href="/assets/resume.pdf"
+              href={RESUME_URL}
               download
               className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-teal-400 border border-teal-500/40 rounded-lg hover:bg-teal-500/10 hover:border-teal-400 transition-all duration-200 whitespace-nowrap"
             >
@@ -79,7 +82,7 @@ export default function ResumeModal({ onClose }) {
 
             {/* Open Full Screen */}
             <a
-              href="/assets/resume.pdf"
+              href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-400 border border-white/10 rounded-lg hover:text-white hover:border-white/20 hover:bg-white/5 transition-all duration-200 whitespace-nowrap"
@@ -121,7 +124,7 @@ export default function ResumeModal({ onClose }) {
                 <p className="text-slate-400 text-sm">Please download instead.</p>
               </div>
               <a
-                href="/assets/resume.pdf"
+                href={RESUME_URL}
                 download
                 className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-sm font-semibold rounded-xl hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] transition-all duration-300"
               >
@@ -133,7 +136,7 @@ export default function ResumeModal({ onClose }) {
             </div>
           ) : (
             <iframe
-              src="/assets/resume.pdf"
+              src={RESUME_URL}
               title="Krishti Patel — Resume"
               className="w-full border-0"
               style={{ height: '80vh', minHeight: '400px' }}
