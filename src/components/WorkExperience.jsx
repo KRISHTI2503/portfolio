@@ -25,10 +25,10 @@ export default function WorkExperience() {
               </div>
             </div>
             <h3 className="text-white font-bold text-lg sm:text-xl mb-4">
-              Just Getting Started
+              Open to Opportunities
             </h3>
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-sm mx-auto mb-10">
-              Currently seeking internship opportunities to apply my skills in a real-world environment and grow as a developer.
+              Actively seeking internships and opportunities to apply my skills, contribute to meaningful projects, and continue growing as a developer.
             </p>
             <a
               href="#contact"
