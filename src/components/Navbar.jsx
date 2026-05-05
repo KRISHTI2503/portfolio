@@ -86,8 +86,8 @@ export default function Navbar() {
           <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center text-dark font-black text-xs shadow-[0_0_15px_rgba(13,148,136,0.5)] group-hover:shadow-[0_0_25px_rgba(13,148,136,0.8)] transition-all duration-300">
             &lt;/&gt;
           </span>
-          <span className="font-bold text-white tracking-tight">
-            krishti<span className="text-teal-400">.</span>dev
+          <span className="font-semibold text-[1.1rem] text-white tracking-tight">
+            Krishti
           </span>
         </a>
 
