@@ -119,27 +119,32 @@ export default function Achievements() {
             {hackathons.map((item, i) => (
               <div
                 key={item.title}
-                className={`reveal reveal-slide-up reveal-delay-${(i % 3) + 1} group glass-card bg-gradient-to-br ${item.color} border ${item.border} p-5 sm:p-6 flex flex-col gap-3 hover:scale-[1.02] transition-all duration-300`}
+                className={`reveal reveal-slide-up reveal-delay-${(i % 3) + 1} group relative glass-card bg-gradient-to-br ${item.color} border ${item.border} p-5 sm:p-6 flex flex-col gap-3 transition-all duration-[250ms] ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.2),0_0_0_1px_rgba(13,148,136,0.4)] hover:border-teal-500/50`}
               >
-                <div className="flex items-start justify-between gap-2">
-                  {/* Rocket icon — outline style */}
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-teal-400/30 transition-all duration-300">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-teal-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                    </svg>
-                  </div>
-                  <span className={`px-2.5 py-1 rounded-full text-xs font-mono border flex-shrink-0 ${item.badge}`}>
+                {/* "Hackathon" badge — top right */}
+                <div className="absolute top-4 right-4">
+                  <span className={`px-2.5 py-1 rounded-full text-xs font-mono border ${item.badge}`}>
                     {item.type}
                   </span>
                 </div>
-                <div>
-                  <h3 className="text-white font-bold mb-1.5 text-sm sm:text-base group-hover:text-teal-300 transition-colors">
+
+                {/* Icon + title row */}
+                <div className="flex items-center gap-3 pr-20">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-teal-400/30 transition-all duration-300">
+                    <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-white font-bold text-sm sm:text-base leading-snug group-hover:text-teal-300 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">{item.description}</p>
                 </div>
+
+                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed flex-1">{item.description}</p>
+
                 <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
-                  <div className="flex items-center gap-2">
+                  {/* Calendar + year */}
+                  <div className="flex items-center gap-1.5">
                     <svg className="w-3.5 h-3.5 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
