@@ -43,7 +43,7 @@ export default function Hero() {
       canvas.height = window.innerHeight
       drawGrid()
     }
-    const drawGrid = () => {sa
+    const drawGrid = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       const isDark = document.documentElement.classList.contains('dark')
       ctx.strokeStyle = isDark
