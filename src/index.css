@@ -34,6 +34,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
 /* Light mode overrides */
 html:not(.dark) body {
   background-color: #f1f5f9;
