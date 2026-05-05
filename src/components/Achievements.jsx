@@ -6,31 +6,31 @@ const hackathons = [
     title: 'DU Hacks 4.0 — GDSC DDU',
     description: 'Built a Stream Selection Platform to help students explore academic streams, colleges, and career paths after 10th grade.',
     date: '2025',
-    emoji: '🚀',
     type: 'Hackathon',
     color: 'from-yellow-500/15 to-orange-500/5',
     border: 'border-yellow-500/25',
     badge: 'bg-yellow-500/10 text-yellow-300 border-yellow-500/20',
+    cert: '/certificates/du-hacks-4.0.jpeg',
   },
   {
     title: 'DU Hacks 5.0 — GDSC DDU',
     description: 'Collaborated with a team to develop FundLedger, a community-driven funding platform that enables transparent proposal submission, verification, and democratic voting to support fair and community-based funding decisions.',
     date: '2026',
-    emoji: '🚀',
     type: 'Hackathon',
     color: 'from-purple-500/15 to-pink-500/5',
     border: 'border-purple-500/25',
     badge: 'bg-purple-500/10 text-purple-300 border-purple-500/20',
+    cert: '/certificates/du-hacks-5.0.jpeg',
   },
   {
     title: "TIC-TECH-TOE '25 — DA-IICT",
     description: 'Developed an Intelligent Virtual Career Advisor to guide students in making informed academic and career decisions.',
     date: '2025',
-    emoji: '🚀',
     type: 'Hackathon',
     color: 'from-teal-500/15 to-emerald-500/5',
     border: 'border-teal-500/25',
     badge: 'bg-teal-500/10 text-teal-300 border-teal-500/20',
+    cert: '/certificates/tic-tech-toe-4.0.jpeg',
   },
 ]
 
@@ -162,11 +162,26 @@ export default function Achievements() {
                   </h3>
                   <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">{item.description}</p>
                 </div>
-                <div className="flex items-center gap-2 mt-auto pt-3 border-t border-white/5">
-                  <svg className="w-3.5 h-3.5 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span className="text-teal-400 text-xs font-mono">{item.date}</span>
+                <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-3.5 h-3.5 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-teal-400 text-xs font-mono">{item.date}</span>
+                  </div>
+                  {item.cert && (
+                    <a
+                      href={item.cert}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-xs font-mono text-teal-400 hover:text-teal-300 transition-all duration-200 hover:translate-x-0.5 hover:underline group/cert"
+                    >
+                      View Certificate
+                      <svg className="w-3 h-3 group-hover/cert:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
