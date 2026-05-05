@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import ResumeModal from './ResumeModal'
 
-const roles = ['Aspiring Web Developer', 'Problem Solver', 'Hackathon Enthusiast']
+const roles = ['Aspiring Developer', 'Problem Solver', 'Hackathon Enthusiast']
 
 function Particle({ style }) {
   return <div className="absolute w-1 h-1 rounded-full bg-teal-400/40 animate-float" style={style} />
@@ -113,7 +113,7 @@ export default function Hero() {
         </div>
 
         <p className="text-slate-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8 sm:mb-12 leading-relaxed px-1 sm:px-2">
-          Aspiring Web Developer passionate about building useful digital solutions.
+          I build user-focused digital solutions with clean design and real-world impact.
         </p>
 
         {/* CTAs */}
