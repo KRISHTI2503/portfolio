@@ -119,7 +119,7 @@ export default function Hero() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
           <a href="#projects" className="btn-primary w-full sm:w-auto text-center">
-            View My Work
+            Explore Projects
           </a>
           <button
             onClick={() => setResumeOpen(true)}
