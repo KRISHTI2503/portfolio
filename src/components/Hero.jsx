@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
+import ResumeModal from './ResumeModal'
 
 const roles = ['Aspiring Web Developer', 'Problem Solver', 'Hackathon Enthusiast']
 
@@ -10,6 +11,7 @@ export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayed, setDisplayed] = useState('')
   const [typing, setTyping] = useState(true)
+  const [resumeOpen, setResumeOpen] = useState(false)
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -41,9 +43,12 @@ export default function Hero() {
       canvas.height = window.innerHeight
       drawGrid()
     }
-    const drawGrid = () => {
+    const drawGrid = () => {sa
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.strokeStyle = 'rgba(13, 148, 136, 0.07)'
+      const isDark = document.documentElement.classList.contains('dark')
+      ctx.strokeStyle = isDark
+        ? 'rgba(13, 148, 136, 0.07)'
+        : 'rgba(148, 163, 184, 0.2)'
       ctx.lineWidth = 1
       const size = 60
       for (let x = 0; x < canvas.width; x += size) {
@@ -55,7 +60,15 @@ export default function Hero() {
     }
     resize()
     window.addEventListener('resize', resize)
-    return () => window.removeEventListener('resize', resize)
+
+    // Redraw grid when theme changes
+    const observer = new MutationObserver(drawGrid)
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+
+    return () => {
+      window.removeEventListener('resize', resize)
+      observer.disconnect()
+    }
   }, [])
 
   const particles = Array.from({ length: 16 }, (_, i) => ({
@@ -71,7 +84,7 @@ export default function Hero() {
   }))
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
+    <section id="hero" className="relative min-h-screen min-h-[600px] flex items-center justify-center overflow-hidden px-4">
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
 
       {/* Orbs */}
@@ -83,44 +96,45 @@ export default function Hero() {
 
       <div className="relative z-10 w-full max-w-4xl mx-auto text-center py-24 sm:py-32">
 
+        
+
         {/* Name */}
-        <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white mb-4 leading-none tracking-tight animate-slide-up">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-tight tracking-tight animate-slide-up">
           Hi, I'm <span className="gradient-text">Krishti Patel</span>
         </h1>
 
-        {/* Typewriter — no fixed min-width so it doesn't overflow on mobile */}
-        <div className="flex items-center justify-center gap-2 my-6 sm:my-8 min-h-[2.5rem]">
-          <span className="text-slate-500 font-mono text-base sm:text-lg flex-shrink-0">&gt;</span>
-          <span className="text-lg sm:text-xl md:text-2xl font-mono text-cyan-300 text-left break-words">
+        {/* Typewriter */}
+        <div className="flex items-center justify-center gap-2 my-5 sm:my-8 min-h-[2rem] sm:min-h-[2.5rem]">
+          <span className="text-slate-500 font-mono text-sm sm:text-lg flex-shrink-0">&gt;</span>
+          <span className="text-base sm:text-xl md:text-2xl font-mono text-cyan-300 text-left break-all sm:break-words">
             {displayed}
-            <span className="inline-block w-0.5 h-5 sm:h-6 bg-teal-400 ml-1 animate-pulse align-middle" />
+            <span className="inline-block w-0.5 h-4 sm:h-6 bg-teal-400 ml-1 animate-pulse align-middle" />
           </span>
         </div>
 
-        <p className="text-slate-400 text-base sm:text-lg max-w-xl sm:max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed px-2">
+        <p className="text-slate-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8 sm:mb-12 leading-relaxed px-1 sm:px-2">
           Aspiring Web Developer passionate about building useful digital solutions.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="#projects" className="btn-primary w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
+          <a href="#projects" className="btn-primary w-full sm:w-auto text-center">
             View My Work
           </a>
-          <a
-            href="/assets/resume.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setResumeOpen(true)}
             className="btn-outline w-full sm:w-auto flex items-center justify-center gap-2"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={1.75} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.964-7.178z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            Resume
-          </a>
+            View Resume
+          </button>
         </div>
       </div>
 
+      {resumeOpen && <ResumeModal onClose={() => setResumeOpen(false)} />}
     </section>
   )
 }
