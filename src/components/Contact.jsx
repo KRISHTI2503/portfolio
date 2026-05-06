@@ -11,6 +11,9 @@ const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'  // e.g. 'template_xyz789'
 const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'   // e.g. 'abcDEFghiJKL'
 // ────────────────────────────────────────────────────────────
 
+// Initialise EmailJS once at module level
+emailjs.init(EMAILJS_PUBLIC_KEY)
+
 const socials = [
   {
     label: 'Email',
@@ -40,7 +43,7 @@ const socials = [
 
 function MessageCard() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
   const [focused, setFocused] = useState(null)
 
   const inputBase = (field) =>
@@ -52,7 +55,7 @@ function MessageCard() {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    setStatus('sending')
+    setStatus('loading')
 
     try {
       await emailjs.send(
@@ -133,10 +136,10 @@ function MessageCard() {
 
           <button
             type="submit"
-            disabled={status === 'sending'}
+            disabled={status === 'loading'}
             className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-sm font-semibold rounded-xl hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all duration-200"
           >
-            {status === 'sending' ? (
+            {status === 'loading' ? (
               <>
                 <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
