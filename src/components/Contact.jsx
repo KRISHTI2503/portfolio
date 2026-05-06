@@ -1,6 +1,15 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import useReveal from '../hooks/useReveal'
 import SectionTitle from './SectionTitle'
+
+// ── EmailJS config ──────────────────────────────────────────
+// Replace these three values with your actual EmailJS credentials:
+//   https://dashboard.emailjs.com/admin
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'   // e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'  // e.g. 'template_xyz789'
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'   // e.g. 'abcDEFghiJKL'
+// ────────────────────────────────────────────────────────────
 
 const socials = [
   {
@@ -31,7 +40,7 @@ const socials = [
 
 function MessageCard() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
   const [focused, setFocused] = useState(null)
 
   const inputBase = (field) =>
@@ -41,15 +50,32 @@ function MessageCard() {
         : 'border-white/[0.08] hover:border-white/[0.15]'
     }`
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    setSent(true)
-    setForm({ name: '', email: '', message: '' })
+    setStatus('sending')
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          user_name:  form.name,
+          user_email: form.email,
+          message:    form.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      )
+      setStatus('success')
+      setForm({ name: '', email: '', message: '' })
+    } catch (err) {
+      console.error('EmailJS error:', err)
+      setStatus('error')
+    }
   }
 
   return (
     <div className="glass-card p-5 w-full max-w-[460px] mx-auto md:mx-0">
-      {sent ? (
+      {status === 'success' ? (
         <div className="flex flex-col items-center justify-center gap-3 py-6 text-center">
           <div className="w-12 h-12 rounded-full bg-teal-500/15 border border-teal-500/30 flex items-center justify-center">
             <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -59,7 +85,7 @@ function MessageCard() {
           <p className="text-white font-semibold text-sm">Message sent!</p>
           <p className="text-slate-400 text-xs">I'll get back to you soon.</p>
           <button
-            onClick={() => setSent(false)}
+            onClick={() => setStatus('idle')}
             className="text-xs text-teal-400 hover:underline mt-1"
           >
             Send another
@@ -75,24 +101,20 @@ function MessageCard() {
           </h3>
 
           <div className="grid grid-cols-2 gap-3">
-            <div>
-              <input
-                type="text" required placeholder="Name"
-                value={form.name}
-                onChange={e => setForm({ ...form, name: e.target.value })}
-                onFocus={() => setFocused('name')} onBlur={() => setFocused(null)}
-                className={inputBase('name')}
-              />
-            </div>
-            <div>
-              <input
-                type="email" required placeholder="Email"
-                value={form.email}
-                onChange={e => setForm({ ...form, email: e.target.value })}
-                onFocus={() => setFocused('email')} onBlur={() => setFocused(null)}
-                className={inputBase('email')}
-              />
-            </div>
+            <input
+              type="text" required placeholder="Name"
+              value={form.name}
+              onChange={e => setForm({ ...form, name: e.target.value })}
+              onFocus={() => setFocused('name')} onBlur={() => setFocused(null)}
+              className={inputBase('name')}
+            />
+            <input
+              type="email" required placeholder="Email"
+              value={form.email}
+              onChange={e => setForm({ ...form, email: e.target.value })}
+              onFocus={() => setFocused('email')} onBlur={() => setFocused(null)}
+              className={inputBase('email')}
+            />
           </div>
 
           <textarea
@@ -103,14 +125,33 @@ function MessageCard() {
             className={`${inputBase('message')} resize-none`}
           />
 
+          {status === 'error' && (
+            <p className="text-red-400 text-xs font-mono">
+              Failed to send message. Please try again or email me directly.
+            </p>
+          )}
+
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-sm font-semibold rounded-xl hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            disabled={status === 'sending'}
+            className="w-full flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-sm font-semibold rounded-xl hover:shadow-[0_0_20px_rgba(13,148,136,0.4)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 transition-all duration-200"
           >
-            Send Message
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
+            {status === 'sending' ? (
+              <>
+                <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                </svg>
+                Sending...
+              </>
+            ) : (
+              <>
+                Send Message
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </>
+            )}
           </button>
         </form>
       )}
