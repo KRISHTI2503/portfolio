@@ -6,7 +6,7 @@ import SectionTitle from './SectionTitle'
 // ── EmailJS config ──────────────────────────────────────────
 // Replace these three values with your actual EmailJS credentials:
 //   https://dashboard.emailjs.com/admin
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'   // e.g. 'service_abc123'
+const EMAILJS_SERVICE_ID  = 'service_1tgva8a'
 const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'  // e.g. 'template_xyz789'
 const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'   // e.g. 'abcDEFghiJKL'
 // ────────────────────────────────────────────────────────────
@@ -55,10 +55,14 @@ function MessageCard() {
 
   const handleSubmit = async e => {
     e.preventDefault()
+
+    // Basic validation — prevent empty submission
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return
+
     setStatus('loading')
 
     try {
-      await emailjs.send(
+      const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
@@ -68,6 +72,7 @@ function MessageCard() {
         },
         EMAILJS_PUBLIC_KEY
       )
+      console.log('EmailJS success:', response.status, response.text)
       setStatus('success')
       setForm({ name: '', email: '', message: '' })
     } catch (err) {
